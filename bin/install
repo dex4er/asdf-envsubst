@@ -76,7 +76,7 @@ function install() {
 	gh_curl -H "Accept: application/octet-stream" -o "${download_filename}" "${download_url}"
 
 	if command -v md5sum >/dev/null; then
-		gh_curl -H "Accept: application/octet-stream" "${checksum_url}" | awk "\$2 == \"${download_filename}\" {print}" | md5sum -c
+		gh_curl -H "Accept: application/octet-stream" "${checksum_url}" | awk "{printf \"%s  %s\\n\", \$1, \"${download_filename}\"}" | md5sum -c
 	fi
 
 	mkdir -p "${bin_install_path}"
