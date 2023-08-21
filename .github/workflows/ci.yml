@@ -35,11 +35,9 @@ jobs:
       - name: Preinstall
         run: ${{ matrix.preinstall }}
 
-      - name: Fake terraform
+      - name: Set PATH
         run: |
-          echo '#!/bin/bash' | tee /usr/local/bin/terraform
-          echo 'echo Fake Terraform' | tee -a /usr/local/bin/terraform
-          chmod +x /usr/local/bin/terraform
+          echo "$HOME/.asdf/bin" >> $GITHUB_PATH
 
       - name: Test plugin
         uses: asdf-vm/actions/plugin-test@v1
@@ -54,11 +52,9 @@ jobs:
       - name: Preinstall
         run: brew install jq
 
-      - name: Fake terraform
+      - name: Set PATH
         run: |
-          echo '#!/bin/bash' | sudo tee /usr/local/bin/terraform
-          echo 'echo Fake Terraform' | sudo tee -a /usr/local/bin/terraform
-          sudo chmod +x /usr/local/bin/terraform
+          echo "$HOME/.asdf/bin" >> $GITHUB_PATH
 
       - name: Test plugin
         uses: asdf-vm/actions/plugin-test@v1
