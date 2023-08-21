@@ -35,15 +35,11 @@ jobs:
       - name: Preinstall
         run: ${{ matrix.preinstall }}
 
-      - name: Set PATH
-        run: |
-          echo "$HOME/.asdf/bin" >> $GITHUB_PATH
-
       - name: Test plugin
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            envsubst 2>&1 | grep ^Usage:
+            $HOME/.asdf/bin/envsubst 2>&1 | grep ^Usage:
 
   macos:
     runs-on: macos-latest
@@ -52,12 +48,8 @@ jobs:
       - name: Preinstall
         run: brew install jq
 
-      - name: Set PATH
-        run: |
-          echo "$HOME/.asdf/bin" >> $GITHUB_PATH
-
       - name: Test plugin
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            envsubst 2>&1 | grep ^Usage:
+            $HOME/.asdf/bin/envsubst 2>&1 | grep ^Usage:
