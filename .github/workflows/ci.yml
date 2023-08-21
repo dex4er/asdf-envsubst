@@ -39,12 +39,7 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            set -x
-            set
-            ls -l $ASDF_DIR/shims
-            $ASDF_DIR/shims/envsubst --help
-            envsubst --help
-            false
+            echo '${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}' | envsubst
 
   macos:
     runs-on: macos-latest
@@ -57,9 +52,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            set -x
-            set
-            ls -l $ASDF_DIR/shims
-            $ASDF_DIR/shims/envsubst --help
-            envsubst --help
-            false
+            echo '${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}' | envsubst
