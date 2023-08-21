@@ -39,7 +39,12 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            bash -c '$ASDF_DIR/bin/envsubst 2>&1 | grep ^Usage:'
+            set -x
+            set
+            ls -l $ASDF_DIR/shims
+            $ASDF_DIR/shims/envsubst --help
+            envsubst --help
+            false
 
   macos:
     runs-on: macos-latest
@@ -52,4 +57,9 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            bash -c '$ASDF_DIR/bin/envsubst 2>&1 | grep ^Usage:'
+            set -x
+            set
+            ls -l $ASDF_DIR/shims
+            $ASDF_DIR/shims/envsubst --help
+            envsubst --help
+            false
