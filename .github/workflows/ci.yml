@@ -39,7 +39,7 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            $ASDF_DIR/bin/envsubst 2>&1 | grep ^Usage:
+            bash -c '$ASDF_DIR/bin/envsubst 2>&1 | grep ^Usage:'
 
   macos:
     runs-on: macos-latest
@@ -52,4 +52,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: |
-            $ASDF_DIR/bin/envsubst 2>&1 | grep ^Usage:
+            bash -c '$ASDF_DIR/bin/envsubst 2>&1 | grep ^Usage:'
