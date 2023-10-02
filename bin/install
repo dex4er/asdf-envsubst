@@ -61,7 +61,7 @@ function install() {
 		fi
 		checksum_url=$(gh_curl -H "Accept: application/vnd.github.v3.raw" "${asset_url}" | jq -r ".assets | map(select(.name == \"${checksum_filename}\"))[0].url")
 		if [[ ${checksum_url} == null ]]; then
-			echo "Artifact ${checksum_filename} not found in a release ${prefix}${version}."
+			echo "Asset ${checksum_filename} not found in a release ${prefix}${version}."
 			exit 1
 		fi
 	else
