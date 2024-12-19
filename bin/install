@@ -61,12 +61,12 @@ function install() {
 	if [[ -n ${GITHUB_TOKEN-} ]] || [[ -n ${GITHUB_API_TOKEN-} ]]; then
 		local asset_url
 		asset_url="https://api.github.com/repos/${repo}/releases/tags/${prefix}${version}"
-		download_url=$(gh_curl -H "Accept: application/vnd.github.v3.raw" "${asset_url}" | jq_or_yq ".assets | map(select(.name == \"${download_filename}\"))[0].url")
+		download_url=$(gh_curl -H "Accept: application/vnd.github.v3.raw" "${asset_url}" | jq_or_yq ".assets | map(select(.name == \"${download_filename}\")) | .[0].url")
 		if [[ ${download_url} == null ]]; then
 			echo "Asset ${download_filename} not found in a release ${prefix}${version}."
 			exit 1
 		fi
-		checksum_url=$(gh_curl -H "Accept: application/vnd.github.v3.raw" "${asset_url}" | jq_or_yq ".assets | map(select(.name == \"${checksum_filename}\"))[0].url")
+		checksum_url=$(gh_curl -H "Accept: application/vnd.github.v3.raw" "${asset_url}" | jq_or_yq ".assets | map(select(.name == \"${checksum_filename}\")) | .[0].url")
 		if [[ ${checksum_url} == null ]]; then
 			echo "Asset ${checksum_filename} not found in a release ${prefix}${version}."
 			exit 1
