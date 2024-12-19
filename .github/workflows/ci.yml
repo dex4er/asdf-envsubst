@@ -20,7 +20,7 @@ jobs:
       matrix:
         include:
           - container: alpine:latest
-            preinstall: apk add bash coreutils curl git jq
+            preinstall: apk add bash coreutils curl git yq
           - container: amazonlinux:latest
             preinstall: dnf -y install git findutils jq
           - container: ubuntu:latest
